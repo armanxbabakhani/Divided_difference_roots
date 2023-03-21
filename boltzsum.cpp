@@ -17,8 +17,6 @@ cpp_int factorial(int n)
     return result;
 }
 
-// We need a function with the following inputs: 1 - array of floats E_js of length q, 2 - A complex D , 3 - An integer kmax
-
 cpp_dec_float_50* Sk(float* Ejs , int q , std::complex<float> D, int kmax){
     // Computing the polynomial p(E):
     cpp_dec_float_50 p_coeffs[q+1];
@@ -34,6 +32,7 @@ cpp_dec_float_50* Sk(float* Ejs , int q , std::complex<float> D, int kmax){
         p_coeffs[j] += Ejs[i]*p_coeffs[j+1];
         }
     }
+    // Adding the (-1)^q D to the original polynomial:
     p_coeffs[0] = p_coeffs[0] + pow(-1.0 , q)*real(D);
 
     //Computing the derivative of p(x) (i.e. p'(E)):
